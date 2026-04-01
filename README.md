@@ -7,10 +7,8 @@
 
 A campus transit tracking app was displaying real-time bus ETAs from a third-party API but facing two challenges:
 
-1. **Prediction accuracy varied wildly** by time, location, and conditions — users stopped trusting ETAs and just watched live location instead
-2. **API costs were unsustainable** — expensive traffic and weather data calls were draining resources without proportional value
-
-As a user of the app myself, I experienced this. The ETA would say "5 minutes" and the bus would arrive in 12.
+1. Prediction accuracy varied and users (including myself) stopped trusting ETAs and just watched live location of the buses instead.
+2. API costs were unsustainable and so. Expensive traffic and weather data calls were draining our resources.
 
 ## Solution
 
@@ -19,14 +17,14 @@ I built two statistical models to solve this:
 ### 1. Inaccuracy Index
 Quantified when third-party ETA predictions were unreliable:
 - Calculated prediction error (predicted arrival - actual arrival) by route, time of day, day of week, and weather conditions
-- Found that certain routes/times had systematic biases (e.g., Route EE at 8 AM in rain averaged +6 min error, Route A at 2 PM sunny averaged +1 min error)
-- Built a decision rule: if inaccuracy exceeds threshold X, call expensive real-time APIs; otherwise, trust the cheaper baseline
+- Found that certain routes/times had biases (a certain route at 8 AM in the rain averaged +6 min error whereas another route at 2 PM sunny averaged +1 min error)
+- Built a decision rule that said if inaccuracy exceeds threshold X, call expensive real-time APIs; otherwise, trust the cheaper baseline
 
 ### 2. Dwell Time Threshold Detection
 Identified when buses were stuck at stops (indicating delays to downstream predictions):
 - Analyzed historical dwell time distributions per stop
 - Set threshold: if dwell time > mean + 2σ, flag as "unusual delay"
-- This caught common issues: busy stops during rush hour, lunch time, etc.
+- This caught common issues like busy stops during rush hour, lunch time, etc.
 
 ## Technical Approach
 
