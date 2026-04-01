@@ -1,8 +1,7 @@
 # eta-optimization
 # ETA Prediction & Cost Optimization for Transit App
 
-> **Note:** This case study describes ML work I did on a real transit product. Due to NDA obligations, I've removed company names and specific metrics.
-> I'm sharing only the technical approach and general business logic to demonstrate my problem-solving methodology.
+ **Note:** This case study describes ML work I did on a real transit product. Due to NDA obligations, I've removed company names and specific metrics. I'm sharing only the technical approach and general business logic to demonstrate my problem-solving methodology.
 
 ## Problem
 
